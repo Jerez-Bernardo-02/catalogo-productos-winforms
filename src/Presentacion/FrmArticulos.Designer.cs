@@ -59,13 +59,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsslCantidadArticulos = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFiltros
@@ -378,30 +375,11 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslCantidadArticulos});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 483);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(960, 22);
-            this.statusStrip1.TabIndex = 38;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tsslCantidadArticulos
-            // 
-            this.tsslCantidadArticulos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsslCantidadArticulos.Name = "tsslCantidadArticulos";
-            this.tsslCantidadArticulos.Size = new System.Drawing.Size(177, 17);
-            this.tsslCantidadArticulos.Text = "Se encontraron: 2500 artículos";
-            // 
             // FrmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 505);
-            this.ControlBox = false;
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlFiltros);
@@ -412,12 +390,10 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.dataGridView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmArticulos";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Artículos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlFiltros.ResumeLayout(false);
             this.pnlFiltros.PerformLayout();
@@ -425,8 +401,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,7 +439,5 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel tsslCantidadArticulos;
     }
 }
