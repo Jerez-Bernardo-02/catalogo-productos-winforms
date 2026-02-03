@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, UrlImagen, IdArticulo FROM IMAGENES");
+                datos.setearConsulta("SELECT Id, ImagenUrl, IdArticulo FROM IMAGENES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,7 +26,7 @@ namespace Negocio
                     Imagen aux = new Imagen();
 
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     aux.IdArticulo = (int)datos.Lector["IdArticulo"];
 
                     lista.Add(aux);
@@ -51,7 +51,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, UrlImagen, IdArticulo FROM IMAGENES WHERE IdArticulo = @idArticulo");
+                datos.setearConsulta("SELECT Id, ImagenUrl, IdArticulo FROM IMAGENES WHERE IdArticulo = @idArticulo");
                 datos.setearParametro("@idArticulo", idArticulo);
                 datos.ejecutarLectura();
 
@@ -60,7 +60,7 @@ namespace Negocio
                     Imagen aux = new Imagen();
 
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     aux.IdArticulo = (int)datos.Lector["IdArticulo"];
 
                     lista.Add(aux);
@@ -84,8 +84,8 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO IMAGENES (UrlImagen, IdArticulo) VALUES (@urlImagen, @idArticulo)");
-                datos.setearParametro("@urlImagen", imagen.UrlImagen);
+                datos.setearConsulta("INSERT INTO IMAGENES (ImagenUrl, IdArticulo) VALUES (@imagenUrl, @idArticulo)");
+                datos.setearParametro("@imagenUrl", imagen.UrlImagen);
                 datos.setearParametro("@idArticulo", imagen.IdArticulo);
 
                 datos.ejecutarAccion();
@@ -106,9 +106,9 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("UPDATE IMAGENES SET UrlImagen = @urlImagen WHERE Id = @id");
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @imagenUrl WHERE Id = @id");
                 datos.setearParametro("@id", imagen.Id);
-                datos.setearParametro("@urlImagen", imagen.UrlImagen);
+                datos.setearParametro("@imagenUrl", imagen.UrlImagen);
 
                 datos.ejecutarAccion();
             }
