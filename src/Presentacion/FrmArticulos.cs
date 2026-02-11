@@ -14,9 +14,14 @@ namespace Presentacion
 {
     public partial class FrmArticulos : Form
     {
+        // ---------- Campos privados ----------
         private List<Articulo> listaArticulos;
         private List<Imagen> listaImagenes;
 
+        private Articulo articuloActual;
+        private int indiceImagenActual;
+
+        // ---------- Inicialización ----------
         public FrmArticulos()
         {
             InitializeComponent();
@@ -26,39 +31,34 @@ namespace Presentacion
         {
             try
             {
-                cargarDatos();
-                cargarGrilla();
-                ocultarColumnas();
+                CargarListaArticulos();
+                CargarListaImagenes();
+                AsociarImagenesPorArticulo();
+
+                MostrarGrilla();
+
+                OcultarColumnas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString()); // Error al cargar los datos
+                MessageBox.Show(ex.ToString());
             }
-
         }
 
-        private void cargarDatos()
-        {
-            cargarListaArticulos();
-            cargarListaImagenes();
-            cargarImagenesPorArticulo();
-        }
-
-        private void cargarListaArticulos()
+        // ---------- Carga de Datos ----------
+        private void CargarListaArticulos()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-
             listaArticulos = negocio.Listar();
         }
 
-        private void cargarListaImagenes()
+        private void CargarListaImagenes()
         {
             ImagenNegocio negocio = new ImagenNegocio();
-
             listaImagenes = negocio.Listar();
         }
 
-        private void cargarImagenesPorArticulo()
+        private void AsociarImagenesPorArticulo()
         {
             if (listaArticulos == null || listaImagenes == null)
             {
@@ -71,40 +71,83 @@ namespace Presentacion
             }
         }
 
-        private void cargarGrilla()
+        // ---------- Eventos Principales ----------
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            CargarArticuloSeleccionado();
+
+            if(articuloActual == null)
+            {
+                return;
+            }
+
+            MostrarDetalle();
+            MostrarImagen();
+            ActualizarBotonesImagen();
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (indiceImagenActual <= 0)
+            {
+                return;
+            }
+
+            indiceImagenActual--;
+            MostrarImagen();
+            ActualizarBotonesImagen();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (indiceImagenActual >= articuloActual.Imagenes.Count - 1)
+            {
+                return;
+            }
+
+            indiceImagenActual++;
+            MostrarImagen();
+            ActualizarBotonesImagen();
+        }
+
+        // ---------- Eventos de UI ----------
+        private void CargarArticuloSeleccionado()
+        {
+            if (dgvArticulos.CurrentRow == null)
+            {
+                articuloActual = null;
+                return;
+            }
+
+            articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            indiceImagenActual = 0;
+        }
+
+        private void MostrarGrilla()
         {
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaArticulos;
         }
 
-        private void cargarDetalle()
+        private void MostrarDetalle()
         {
-            if (dgvArticulos.CurrentRow == null)
+            if(articuloActual == null)
             {
                 return;
             }
 
-            Articulo seleccionado = dgvArticulos.CurrentRow.DataBoundItem as Articulo;
-
-            if (seleccionado == null)
-            {
-                return;
-            }
-
-            lblNombre.Text = (string)seleccionado.Nombre;
-            lblPrecio.Text = "$ " + seleccionado.Precio.ToString("N2");
-            lblMarca.Text = (string)seleccionado.Marca.Descripcion;
-            lblCategoria.Text = (string)seleccionado.Categoria.Descripcion;
-            txtDescripcion.Text = (string)seleccionado.Descripcion;
-
-            cargarImagen(seleccionado.Imagenes[0].UrlImagen);
+            lblNombre.Text = articuloActual.Nombre;
+            lblPrecio.Text = "$ " + articuloActual.Precio.ToString("N2");
+            lblMarca.Text = articuloActual.Marca.Descripcion;
+            lblCategoria.Text = articuloActual.Categoria.Descripcion;
+            txtDescripcion.Text = articuloActual.Descripcion;
         }
 
-        private void cargarImagen(string imagenUrl)
+        private void MostrarImagen()
         {
             try
             {
-                pbxImagen.Load(imagenUrl);
+                pbxImagen.Load(articuloActual.Imagenes[indiceImagenActual].UrlImagen);
                 // Si la URL es inválida, el sistema espera a que el
                 // request HTTP falle (timeout) y recien ahi pasa al catch
             }
@@ -114,12 +157,20 @@ namespace Presentacion
             }
         }
 
-        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        private void ActualizarBotonesImagen()
         {
-            cargarDetalle();
+            if (articuloActual.Imagenes == null || articuloActual.Imagenes.Count <= 1)
+            {
+                btnAnterior.Enabled = false;
+                btnSiguiente.Enabled = false;
+                return;
+            }
+
+            btnAnterior.Enabled = indiceImagenActual > 0;
+            btnSiguiente.Enabled = indiceImagenActual < articuloActual.Imagenes.Count - 1;
         }
 
-        private void ocultarColumnas()
+        private void OcultarColumnas()
         {
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["Descripcion"].Visible = false;
