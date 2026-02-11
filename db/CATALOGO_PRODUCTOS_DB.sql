@@ -83,8 +83,8 @@ INSERT INTO ARTICULOS VALUES
 
 INSERT INTO IMAGENES VALUES
 (1,'https://images.samsung.com/is/image/samsung/co-galaxy-s10-sm-g970-sm-g970fzyjcoo-frontcanaryyellow-thumb-149016542'),
-(2,'https://www.motorola.cl/arquivos/moto-g7-play-img-product.png?v=636862863804700000'),
+(2,'https://fdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g7-1.jpg'),
 (2,'https://i.blogs.es/9da288/moto-g7-/1366_2000.jpg'),
-(3,'https://www.euronics.cz/image/product/800x800/532620.jpg'),
-(4,'https://intercompras.com/product_thumb_keepratio_2.php?img=images/product/SONY_KDL-55W950A.jpg&w=650&h=450'),
-(5,'https://cnnespanol2.files.wordpress.com/2015/12/gadgets-mc3a1s-populares-apple-tv-2015-18.jpg');
+(3,'https://i5.walmartimages.com/asr/230f7166-6198-47e2-9d7c-6765dd55eaa0_1.1814fe6b8a1755f07a4d7d4aaf92c4b7.jpeg'),
+(4,'https://i5.walmartimages.com/seo/Sony-55-class-BRAVIA-7-Mini-LED-QLED-4K-HDR-Smart-Google-TV-K55XR70-2024-Model_726d0d4b-a029-48c4-883a-9cd10ce2ca05.d8ed3dbe4169d0e8846a4f403f4ae02d.jpeg'),
+(5,'https://images.macrumors.com/article-new/2022/10/apple-tv-4k-yellow-bg-feature.jpg');
