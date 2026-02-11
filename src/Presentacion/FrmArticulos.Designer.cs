@@ -178,6 +178,7 @@
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(188, 20);
             this.txtFiltroRapido.TabIndex = 32;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // label7
             // 

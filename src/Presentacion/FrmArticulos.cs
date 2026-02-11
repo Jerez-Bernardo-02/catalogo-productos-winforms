@@ -36,8 +36,6 @@ namespace Presentacion
                 AsociarImagenesPorArticulo();
 
                 MostrarGrilla();
-
-                OcultarColumnas();
             }
             catch (Exception ex)
             {
@@ -127,6 +125,8 @@ namespace Presentacion
         {
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaArticulos;
+
+            OcultarColumnas();
         }
 
         private void MostrarDetalle()
@@ -175,6 +175,30 @@ namespace Presentacion
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["Descripcion"].Visible = false;
             dgvArticulos.Columns["Precio"].Visible = false;
+        }
+
+        // ---------- Filtros ----------
+        private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtFiltroRapido.Text;
+
+            if(filtro.Length >= 3) // Solo filtra a partir de 3 caracteres
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Codigo.ToUpper().Contains(filtro.ToUpper()) 
+                                                         || x.Nombre.ToUpper().Contains(filtro.ToUpper()) 
+                                                         || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper())
+                                                         || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+
+            OcultarColumnas();
         }
     }
 }
