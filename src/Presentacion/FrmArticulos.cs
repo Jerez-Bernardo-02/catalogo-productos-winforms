@@ -82,7 +82,7 @@ namespace Presentacion
             }
 
             MostrarDetalle();
-            MostrarImagen();
+            MostrarImagen(articuloActual.Imagenes[indiceImagenActual].UrlImagen);
             ActualizarBotonesImagen();
         }
 
@@ -94,7 +94,7 @@ namespace Presentacion
             }
 
             indiceImagenActual--;
-            MostrarImagen();
+            MostrarImagen(articuloActual.Imagenes[indiceImagenActual].UrlImagen);
             ActualizarBotonesImagen();
         }
 
@@ -106,7 +106,7 @@ namespace Presentacion
             }
 
             indiceImagenActual++;
-            MostrarImagen();
+            MostrarImagen(articuloActual.Imagenes[indiceImagenActual].UrlImagen);
             ActualizarBotonesImagen();
         }
 
@@ -143,11 +143,11 @@ namespace Presentacion
             txtDescripcion.Text = articuloActual.Descripcion;
         }
 
-        private void MostrarImagen()
+        private void MostrarImagen(string imagen)
         {
             try
             {
-                pbxImagen.Load(articuloActual.Imagenes[indiceImagenActual].UrlImagen);
+                pbxImagen.Load(imagen);
                 // Si la URL es inválida, el sistema espera a que el
                 // request HTTP falle (timeout) y recien ahi pasa al catch
             }
