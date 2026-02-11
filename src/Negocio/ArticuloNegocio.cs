@@ -59,7 +59,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar los artículos desde la base de datos", ex);
             }
             finally
             {
@@ -96,7 +96,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar el artículo a la base de datos", ex);
             }
             finally
             {
@@ -150,6 +150,10 @@ namespace Negocio
                     }
                 }
             }
+            catch(Exception ex)
+            {
+                throw new Exception("Error al modificar el artículo en la base de datos", ex);
+            }
             finally
             {
                 datos.cerrarConexion();
@@ -173,6 +177,10 @@ namespace Negocio
                 datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error al eliminar el artículo de la base de datos", ex);
             }
             finally
             {

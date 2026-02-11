@@ -34,7 +34,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar las categorías desde la base de datos", ex);
             }
             finally
             {
@@ -55,7 +55,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar la categoría a la base de datos", ex);
             }
             finally
             {
@@ -77,7 +77,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al modificar la categoría en la base de datos", ex);
             }
             finally
             {
@@ -99,7 +99,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al eliminar la categoría de la base de datos", ex);
             }
             finally
             {

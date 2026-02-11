@@ -34,7 +34,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar las marcas desde la base de datos", ex);
             }
             finally
             {
@@ -55,7 +55,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar la marca a la base de datos", ex);
             }
             finally
             {
@@ -77,8 +77,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                throw new Exception("Error al modificar la marca en la base de datos", ex);
             }
             finally
             {
@@ -100,7 +99,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al eliminar la marca de la base de datos", ex);
             }
             finally
             {

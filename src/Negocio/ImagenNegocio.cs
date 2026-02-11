@@ -36,7 +36,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar las imágenes desde la base de datos", ex);
             }
             finally
             {
@@ -70,7 +70,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar las imágenes por artículo desde la base de datos", ex);
             }
             finally
             {
@@ -92,7 +92,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar la imágen a la base de datos", ex);
             }
             finally
             {
@@ -114,7 +114,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al modificar la imágen en la base de datos", ex);
             }
             finally
             {
@@ -136,7 +136,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al eliminar la imágen de la base de datos", ex);
             }
             finally
             {
