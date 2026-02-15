@@ -137,9 +137,7 @@ namespace Presentacion
             }
 
             lblNombre.Text = articuloActual.Nombre;
-            lblPrecio.Text = "$ " + articuloActual.Precio.ToString("N2");
-            lblMarca.Text = articuloActual.Marca.Descripcion;
-            lblCategoria.Text = articuloActual.Categoria.Descripcion;
+            lblPrecio.Text = "AR$ " + articuloActual.Precio.ToString("N2");
             txtDescripcion.Text = articuloActual.Descripcion;
         }
 
@@ -168,6 +166,8 @@ namespace Presentacion
 
             btnAnterior.Enabled = indiceImagenActual > 0;
             btnSiguiente.Enabled = indiceImagenActual < articuloActual.Imagenes.Count - 1;
+            
+            dgvArticulos.Focus(); // Evita que al cambiar de imagen se seleccione el control "txtDescripcion"
         }
 
         private void OcultarColumnas()
@@ -185,10 +185,7 @@ namespace Presentacion
 
             if(filtro.Length >= 3) // Solo filtra a partir de 3 caracteres
             {
-                listaFiltrada = listaArticulos.FindAll(x => x.Codigo.ToUpper().Contains(filtro.ToUpper()) 
-                                                         || x.Nombre.ToUpper().Contains(filtro.ToUpper()) 
-                                                         || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper())
-                                                         || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                listaFiltrada = listaArticulos.FindAll(x => x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Nombre.ToUpper().Contains(filtro.ToUpper()));
             }
             else
             {

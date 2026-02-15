@@ -51,7 +51,7 @@ namespace Presentacion
                     return;
                 }
 
-                formularioActual.Dispose();
+                formularioActual.Close();
             }
 
             formularioActual = formulario;
@@ -63,6 +63,7 @@ namespace Presentacion
             formulario.Dock = DockStyle.Fill; // Hace que el formulario ocupe todo el espacio disponible del panel
 
             panelContenedor.Controls.Add(formulario); // Agrega el formulario al panel como si fuera un control más
+            
             formulario.Show();
         }
     }
